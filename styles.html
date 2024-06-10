@@ -1,7 +1,7 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #b4dcff; /* Azul bem clarinho */
+    background-color: #f0f8ff; /* Azul bem clarinho */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,11 +9,16 @@ body {
 }
 
 .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
     text-align: center;
 }
 
 .container button {
-    background-color: #8500ba; /* Cor do botão */
+    background-color: #008cba; /* Cor do botão */
     color: white;
     padding: 15px 32px;
     text-align: center;
@@ -32,6 +37,7 @@ body {
     align-items: center;
     height: 100vh;
     text-align: center;
+    padding: 0 20px; /* Para melhorar a exibição no mobile */
 }
 
 .lyrics-container p {
