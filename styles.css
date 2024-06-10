@@ -1,0 +1,41 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #b4dcff; /* Azul bem clarinho */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    text-align: center;
+}
+
+.container button {
+    background-color: #8500ba; /* Cor do botão */
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+}
+
+.lyrics-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.lyrics-container p {
+    max-width: 600px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+}
