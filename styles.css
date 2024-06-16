@@ -73,8 +73,16 @@ body {
 }
 
 .menu-button {
-    font-size: 24px;
+    background-color: #008cba; /* Cor do botão */
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
     cursor: pointer;
+    border: none;
+    border-radius: 8px;
 }
 
 .menu-content {
