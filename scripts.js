@@ -1,3 +1,8 @@
+function toggleMenu() {
+    const menuContent = document.querySelector('.menu-content');
+    menuContent.style.display = menuContent.style.display === 'flex' ? 'none' : 'flex';
+}
+
 function checkPassword() {
     const password = document.getElementById('password').value;
     const correctPassword = '09032024';
