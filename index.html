@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página Principal</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js" defer></script>
 </head>
 <body>
     <div class="container">
@@ -18,10 +19,15 @@
             <p>Bom, é o tipo de coisa que eu gostaria de poder te falar pessoalmente, mas como não é o caso, Eu te amo demais e eu espero com todo o meu coração que você se sinta amada por mim, e se não se sentir, que em algum momento isso aconteça e que eu consiga te proporcionar muitos momentos felizes.</p>
             <p>Agora pode ficar "a vontade" nesse projeto q se Deus quiser não vai acabar nunca.</p>
         </div>
-        <button onclick="location.href='musica.html'">Ver Letra</button>
-        <button onclick="location.href='https://open.spotify.com/playlist/1bN2og7ffd4otRABJQakPx?si=E0WXqAb6TECegd8VkS3ZQQ&pi=RohRmneIR9qNa'">Spotify Playlist</button>
-        <button onclick="location.href='password.html'">segredo</button>
-        <button onclick="location.href='Central.html'">Biblioteca</button>
+    </div>
+    <div class="menu">
+        <div class="menu-button" onclick="toggleMenu()">⋮</div>
+        <div class="menu-content">
+            <button onclick="location.href='musica.html'">Ver Letra</button>
+            <button onclick="location.href='https://open.spotify.com/playlist/1bN2og7ffd4otRABJQakPx?si=E0WXqAb6TECegd8VkS3ZQQ&pi=RohRmneIR9qNa'">Spotify Playlist</button>
+            <button onclick="location.href='password.html'">segredo</button>
+            <button onclick="location.href='Central.html'">Biblioteca</button>
+        </div>
     </div>
 </body>
 </html>
