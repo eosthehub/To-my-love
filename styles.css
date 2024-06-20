@@ -115,22 +115,3 @@ body {
     border-radius: 8px;
     width: 100%;
 }
-.message-box {
-    margin-top: 20px;
-}
-
-.message-box textarea {
-    width: 100%;
-    max-width: 500px;
-    margin-bottom: 10px;
-}
-
-.message-box button {
-    background-color: #008cba;
-    color: white;
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-}
