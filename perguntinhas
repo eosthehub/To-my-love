@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perguntinhas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="menu">
+        <div class="menu-button" onclick="toggleMenu()">------Páginas------</div>
+        <div class="menu-content">
+            <button onclick="location.href='musica.html'">Ver Letra</button>
+            <button onclick="location.href='https://open.spotify.com/playlist/1bN2og7ffd4otRABJQakPx?si=E0WXqAb6TECegd8VkS3ZQQ&pi=RohRmneIR9qNa'">Spotify Playlist</button>
+            <button onclick="location.href='password.html'">segredo</button>
+            <button onclick="location.href='jogodavelha.html'">Jogo da velha</button>
+            <button onclick="location.href='index.html'">inicio</button>
+        </div>   
+    <div class="container">
+        <div class="message">
+            <p>27/06/2024</p>
+            <p>Na verdade, hoje só tenho perguntas</p>
+            <p>Não por nada em específico mas gostaria de saber como você se sente em relação a tudo, a vida nova que você tem, seus objetivos e etc.</p>
+            <p>Você ainda quer tentar medicina ou vai tentar um outro curso? Vai fazer aqui no Rio ou em portugal?</p>
+            <p>Você oscila muito entre ficar aí ou voltar, onde você realmente quer ficar?</p>
+            <p>De alguma forma você se sente pressionada em relação aos estudos? Tô buscando só falar sobre quando você puxa esse assunto pra que você não se sinta tão pressionada </p>
+            <p>Você realmente pretende me esperar pra ficarmos juntas?</p>
+            <p>O que tem mais te incomodado no geral?</p>
+            <p>O que você mais sente falta daqui?</p>
+            <p>O que você mais queria que eu fizesse por você?</p>
+            <p>Você se sente segura pra por em prática tudo o que você planejou fazer quando chegasse em portugal?</p>
+            <p>O mais importante de tudo obviamente, não precisa responder o que você não quiser responder mas eu só tenho muita curiosidade e vou respeitar se não quiser.</p>
+            <p> A pergunta mais importante de todas, o que é felicidade pra você? O que você quer tanto que você se sentiria realizada?</p>
+            <p>Sim, questionário do bolsa família já que você me engravidou antes de ir e não quis assumir a criança. Talvez seja só gravidez psicológica mas isso não vem ao caso ok.</p> 
+            <p> Tem uma atualizaçãozinha bem boiola pra não perder o costume né e eu espero que você real esteja gostando de tudo isso, dos textos, das atualizações, do jogo, enfim. Essa parte "nerd" minha vem desde criança e se eu não fosse pra área da saúde com certeza hoje estaria cursando TI.</p>
+           <p>Principalmente quero que saiba e que fique bem claro que vou estar sempre contigo independente das respostas, caso você prossiga com os estudos ou não, se quiser ficar por aí ou voltar, se não souber o que fazer ou até mesmo se só não quiser falar nada, vou tá contigo sempre e para sempre</p>
+    </div>
+        <button onclick="location.href='Central.html'">Biblioteca</button>
+    </div>
+</body>
+</html>
