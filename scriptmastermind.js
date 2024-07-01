@@ -69,4 +69,21 @@ document.addEventListener('keydown', event => {
     }
 });
 
+document.getElementById('upButton').addEventListener('click', () => {
+    if (direction.y === 0) direction = { x: 0, y: -1 };
+});
+document.getElementById('downButton').addEventListener('click', () => {
+    if (direction.y === 0) direction = { x: 0, y: 1 };
+});
+document.getElementById('leftButton').addEventListener('click', () => {
+    if (direction.x === 0) direction = { x: -1, y: 0 };
+});
+document.getElementById('rightButton').addEventListener('click', () => {
+    if (direction.x === 0) direction = { x: 1, y: 0 };
+});
+
+document.getElementById('redirectButton').addEventListener('click', () => {
+    window.location.href = 'index.html';
+});
+
 startGame();
