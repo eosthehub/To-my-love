@@ -1,79 +1,64 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
+const gridSize = 20;
+const tileCount = canvas.width / gridSize;
+let snake = [{x: 10, y: 10}];
+let direction = {x: 0, y: 0};
+let food = {x: Math.floor(Math.random() * tileCount), y: Math.floor(Math.random() * tileCount)};
+let gameOver = false;
 
-const tileSize = 32;
-const mapWidth = 25;
-const mapHeight = 18;
-
-const player = {
-    x: 1,
-    y: 1,
-    hp: 10,
-    symbol: '@'
-};
-
-const map = [];
-
-function generateMap() {
-    for (let y = 0; y < mapHeight; y++) {
-        const row = [];
-        for (let x = 0; x < mapWidth; x++) {
-            if (Math.random() < 0.2) {
-                row.push('#'); // wall
-            } else {
-                row.push('.'); // floor
-            }
-        }
-        map.push(row);
+function gameLoop() {
+    if (gameOver) {
+        alert('Game Over');
+        return;
     }
-    map[player.y][player.x] = player.symbol;
+    update();
+    draw();
+    setTimeout(gameLoop, 100);
 }
 
-function drawMap() {
-    for (let y = 0; y < mapHeight; y++) {
-        for (let x = 0; x < mapWidth; x++) {
-            const tile = map[y][x];
-            if (tile === '#') {
-                ctx.fillStyle = 'black';
-            } else if (tile === '.') {
-                ctx.fillStyle = 'gray';
-            } else if (tile === '@') {
-                ctx.fillStyle = 'white';
-            }
-            ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
-        }
+function update() {
+    const head = {x: snake[0].x + direction.x, y: snake[0].y + direction.y};
+
+    if (head.x < 0 || head.x >= tileCount || head.y < 0 || head.y >= tileCount || snake.some(segment => segment.x === head.x && segment.y === head.y)) {
+        gameOver = true;
+        return;
+    }
+
+    snake.unshift(head);
+
+    if (head.x === food.x && head.y === food.y) {
+        food = {x: Math.floor(Math.random() * tileCount), y: Math.floor(Math.random() * tileCount)};
+    } else {
+        snake.pop();
     }
 }
 
-function movePlayer(dx, dy) {
-    const newX = player.x + dx;
-    const newY = player.y + dy;
+function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    if (newX >= 0 && newX < mapWidth && newY >= 0 && newY < mapHeight && map[newY][newX] !== '#') {
-        map[player.y][player.x] = '.';
-        player.x = newX;
-        player.y = newY;
-        map[player.y][player.x] = player.symbol;
-    }
+    ctx.fillStyle = 'lime';
+    snake.forEach(segment => ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize, gridSize));
+
+    ctx.fillStyle = 'red';
+    ctx.fillRect(food.x * gridSize, food.y * gridSize, gridSize, gridSize);
 }
 
-document.addEventListener('keydown', (event) => {
+document.addEventListener('keydown', event => {
     switch (event.key) {
         case 'ArrowUp':
-            movePlayer(0, -1);
+            if (direction.y === 0) direction = {x: 0, y: -1};
             break;
         case 'ArrowDown':
-            movePlayer(0, 1);
+            if (direction.y === 0) direction = {x: 0, y: 1};
             break;
         case 'ArrowLeft':
-            movePlayer(-1, 0);
+            if (direction.x === 0) direction = {x: -1, y: 0};
             break;
         case 'ArrowRight':
-            movePlayer(1, 0);
+            if (direction.x === 0) direction = {x: 1, y: 0};
             break;
     }
-    drawMap();
 });
 
-generateMap();
-drawMap();
+gameLoop();
