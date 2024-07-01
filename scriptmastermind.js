@@ -1,88 +1,79 @@
-const rows = document.querySelectorAll('.row');
-const submitButton = document.getElementById('submitGuess');
-const resetButton = document.getElementById('resetGame');
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
 
-let secretCode = generateSecretCode();
-let currentRow = 0;
+const tileSize = 32;
+const mapWidth = 25;
+const mapHeight = 18;
 
-function generateSecretCode() {
-    const colors = ['R', 'G', 'B', 'Y', 'O', 'P'];
-    let code = [];
-    for (let i = 0; i < 4; i++) {
-        code.push(colors[Math.floor(Math.random() * colors.length)]);
-    }
-    return code;
-}
+const player = {
+    x: 1,
+    y: 1,
+    hp: 10,
+    symbol: '@'
+};
 
-function handleCellClick(e) {
-    const colors = ['R', 'G', 'B', 'Y', 'O', 'P'];
-let code = [];
-let attempts = 0;
-const maxAttempts = 10;
+const map = [];
 
-function generateCode() {
-    code = [];
-    for (let i = 0; i < 4; i++) {
-        const randomColor = colors[Math.floor(Math.random() * colors.length)];
-        code.push(randomColor);
-    }
-}
-
-function checkGuess(guess) {
-    let exactMatches = 0;
-    let colorMatches = 0;
-    const guessCopy = guess.slice();
-    const codeCopy = code.slice();
-
-    for (let i = 0; i < 4; i++) {
-        if (guessCopy[i] === codeCopy[i]) {
-            exactMatches++;
-            guessCopy[i] = codeCopy[i] = null;
-        }
-    }
-
-    for (let i = 0; i < 4; i++) {
-        if (guessCopy[i] !== null) {
-            const index = codeCopy.indexOf(guessCopy[i]);
-            if (index !== -1) {
-                colorMatches++;
-                codeCopy[index] = null;
+function generateMap() {
+    for (let y = 0; y < mapHeight; y++) {
+        const row = [];
+        for (let x = 0; x < mapWidth; x++) {
+            if (Math.random() < 0.2) {
+                row.push('#'); // wall
+            } else {
+                row.push('.'); // floor
             }
         }
+        map.push(row);
     }
-
-    return { exactMatches, colorMatches };
+    map[player.y][player.x] = player.symbol;
 }
 
-document.getElementById('submit-guess').addEventListener('click', () => {
-    const guess = [
-        document.getElementById('guess1').value.toUpperCase(),
-        document.getElementById('guess2').value.toUpperCase(),
-        document.getElementById('guess3').value.toUpperCase(),
-        document.getElementById('guess4').value.toUpperCase()
-    ];
-
-    const { exactMatches, colorMatches } = checkGuess(guess);
-
-    const resultDiv = document.getElementById('result');
-    attempts++;
-    if (exactMatches === 4) {
-        resultDiv.textContent = `Você ganhou! O código era ${code.join('')}`;
-    } else if (attempts >= maxAttempts) {
-        resultDiv.textContent = `Você perdeu! O código era ${code.join('')}`;
-    } else {
-        resultDiv.textContent = `${exactMatches} cores na posição correta, ${colorMatches} cores na posição incorreta. Tentativas restantes: ${maxAttempts - attempts}`;
+function drawMap() {
+    for (let y = 0; y < mapHeight; y++) {
+        for (let x = 0; x < mapWidth; x++) {
+            const tile = map[y][x];
+            if (tile === '#') {
+                ctx.fillStyle = 'black';
+            } else if (tile === '.') {
+                ctx.fillStyle = 'gray';
+            } else if (tile === '@') {
+                ctx.fillStyle = 'white';
+            }
+            ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
+        }
     }
+}
+
+function movePlayer(dx, dy) {
+    const newX = player.x + dx;
+    const newY = player.y + dy;
+
+    if (newX >= 0 && newX < mapWidth && newY >= 0 && newY < mapHeight && map[newY][newX] !== '#') {
+        map[player.y][player.x] = '.';
+        player.x = newX;
+        player.y = newY;
+        map[player.y][player.x] = player.symbol;
+    }
+}
+
+document.addEventListener('keydown', (event) => {
+    switch (event.key) {
+        case 'ArrowUp':
+            movePlayer(0, -1);
+            break;
+        case 'ArrowDown':
+            movePlayer(0, 1);
+            break;
+        case 'ArrowLeft':
+            movePlayer(-1, 0);
+            break;
+        case 'ArrowRight':
+            movePlayer(1, 0);
+            break;
+    }
+    drawMap();
 });
 
-document.getElementById('reset-game').addEventListener('click', () => {
-    generateCode();
-    attempts = 0;
-    document.getElementById('result').textContent = '';
-    document.getElementById('guess1').value = '';
-    document.getElementById('guess2').value = '';
-    document.getElementById('guess3').value = '';
-    document.getElementById('guess4').value = '';
-});
-
-generateCode();
+generateMap();
+drawMap();
