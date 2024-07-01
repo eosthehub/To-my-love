@@ -7,6 +7,14 @@ let direction = { x: 0, y: 0 };
 let food = { x: Math.floor(Math.random() * tileCount), y: Math.floor(Math.random() * tileCount) };
 let gameOver = false;
 
+function startGame() {
+    gameOver = false;
+    snake = [{ x: 10, y: 10 }];
+    direction = { x: 0, y: 0 };
+    food = { x: Math.floor(Math.random() * tileCount), y: Math.floor(Math.random() * tileCount) };
+    gameLoop();
+}
+
 function gameLoop() {
     if (gameOver) {
         alert('Game Over');
@@ -61,4 +69,4 @@ document.addEventListener('keydown', event => {
     }
 });
 
-gameLoop();
+startGame();
