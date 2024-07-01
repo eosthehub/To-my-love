@@ -3,26 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogo Mastermind</title>
-    <link rel="stylesheet" href="stylemastermind.css">
+    <title>Rogue-like Game</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Jogo Mastermind</h1>
-    <div class="game-board">
-        <div class="row">
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="result"></div>
-        </div>
-        <!-- Adicione mais linhas conforme necessário -->
-    </div>
-    <div class="controls">
-        <button id="submitGuess">Enviar Palpite</button>
-        <button id="resetGame">Reiniciar Jogo</button>
-    </div>
-    <script src="scriptmastermind.js"></script>
+    <h1>Rogue-like Game</h1>
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
+    <script src="script.js"></script>
     <div class="menu">
         <button class="menu-button" onclick="toggleMenu()">Páginas</button>
         <div class="menu-content">
