@@ -18,3 +18,14 @@ canvas {
     background-color: #ecf0f1;
     border: 2px solid #34495e;
 }
+
+.controls {
+    margin-top: 20px;
+}
+
+button {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
