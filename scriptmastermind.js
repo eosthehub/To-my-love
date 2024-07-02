@@ -83,7 +83,9 @@ function validateMove(fromRow, fromCol, toRow, toCol) {
     const rowDiff = toRow - fromRow;
     const colDiff = toCol - fromCol;
 
-    if (Math.abs(rowDiff) === 1 && Math.abs(colDiff) === 1) {
+    if (piece === 'r' && rowDiff === -1 && Math.abs(colDiff) === 1) {
+        return true;
+    } else if (piece === 'b' && rowDiff === 1 && Math.abs(colDiff) === 1) {
         return true;
     } else if (Math.abs(rowDiff) === 2 && Math.abs(colDiff) === 2) {
         const jumpedRow = fromRow + rowDiff / 2;
@@ -111,12 +113,17 @@ function getAllValidMoves(player) {
     for (let row = 0; row < boardSize; row++) {
         for (let col = 0; col < boardSize; col++) {
             if (board[row][col] === player) {
-                const directions = [[-1, -1], [-1, 1], [1, -1], [1, 1]];
+                const directions = player === 'r' ? [[-1, -1], [-1, 1]] : [[1, -1], [1, 1]];
                 for (let [rowDiff, colDiff] of directions) {
                     const newRow = row + rowDiff;
                     const newCol = col + colDiff;
                     if (validateMove(row, col, newRow, newCol)) {
                         moves.push({ fromRow: row, fromCol: col, toRow: newRow, toCol: newCol });
+                    }
+                    const jumpRow = row + rowDiff * 2;
+                    const jumpCol = col + colDiff * 2;
+                    if (validateMove(row, col, jumpRow, jumpCol)) {
+                        moves.push({ fromRow: row, fromCol: col, toRow: jumpRow, toCol: jumpCol });
                     }
                 }
             }
