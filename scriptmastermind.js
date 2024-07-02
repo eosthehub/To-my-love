@@ -1,10 +1,17 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
-const gridSize = 100;
 const boardSize = 8;
+let gridSize = canvas.width / boardSize;
 let board = [];
 let currentPlayer = 'player';
 let selectedPiece = null;
+
+function resizeCanvas() {
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+    gridSize = canvas.width / boardSize;
+    drawBoard();
+}
 
 function initializeBoard() {
     for (let row = 0; row < boardSize; row++) {
@@ -140,8 +147,9 @@ document.getElementById('restartButton').addEventListener('click', () => {
 });
 
 document.getElementById('redirectButton').addEventListener('click', () => {
-    window.location.href = 'jogos.html';
+    window.location.href = 'outra-pagina.html';
 });
 
 initializeBoard();
-drawBoard();
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
