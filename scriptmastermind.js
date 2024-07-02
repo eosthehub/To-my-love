@@ -1,89 +1,139 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
-const gridSize = 20;
-const tileCount = canvas.width / gridSize;
-let snake = [{ x: 10, y: 10 }];
-let direction = { x: 0, y: 0 };
-let food = { x: Math.floor(Math.random() * tileCount), y: Math.floor(Math.random() * tileCount) };
-let gameOver = false;
+const gridSize = 100;
+const boardSize = 8;
+let board = [];
+let currentPlayer = 'player';
+let selectedPiece = null;
 
-function startGame() {
-    gameOver = false;
-    snake = [{ x: 10, y: 10 }];
-    direction = { x: 0, y: 0 };
-    food = { x: Math.floor(Math.random() * tileCount), y: Math.floor(Math.random() * tileCount) };
-    gameLoop();
-}
-
-function gameLoop() {
-    if (gameOver) {
-        alert('Game Over');
-        return;
-    }
-    update();
-    draw();
-    setTimeout(gameLoop, 100);
-}
-
-function update() {
-    const head = { x: snake[0].x + direction.x, y: snake[0].y + direction.y };
-
-    if (head.x < 0 || head.x >= tileCount || head.y < 0 || head.y >= tileCount || snake.some(segment => segment.x === head.x && segment.y === head.y)) {
-        gameOver = true;
-        return;
-    }
-
-    snake.unshift(head);
-
-    if (head.x === food.x && head.y === food.y) {
-        food = { x: Math.floor(Math.random() * tileCount), y: Math.floor(Math.random() * tileCount) };
-    } else {
-        snake.pop();
+// Inicializa o tabuleiro com peças
+function initializeBoard() {
+    for (let row = 0; row < boardSize; row++) {
+        board[row] = [];
+        for (let col = 0; col < boardSize; col++) {
+            if (row < 3 && (row + col) % 2 === 1) {
+                board[row][col] = 'b';  // Peça do computador
+            } else if (row > 4 && (row + col) % 2 === 1) {
+                board[row][col] = 'r';  // Peça do jogador
+            } else {
+                board[row][col] = null;
+            }
+        }
     }
 }
 
-function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+// Desenha o tabuleiro
+function drawBoard() {
+    for (let row = 0; row < boardSize; row++) {
+        for (let col = 0; col < boardSize; col++) {
+            if ((row + col) % 2 === 1) {
+                ctx.fillStyle = '#34495e';
+            } else {
+                ctx.fillStyle = '#ecf0f1';
+            }
+            ctx.fillRect(col * gridSize, row * gridSize, gridSize, gridSize);
 
-    ctx.fillStyle = 'lime';
-    snake.forEach(segment => ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize, gridSize));
-
-    ctx.fillStyle = 'red';
-    ctx.fillRect(food.x * gridSize, food.y * gridSize, gridSize, gridSize);
+            const piece = board[row][col];
+            if (piece) {
+                ctx.beginPath();
+                ctx.arc(col * gridSize + gridSize / 2, row * gridSize + gridSize / 2, gridSize / 2 - 10, 0, 2 * Math.PI);
+                ctx.fillStyle = piece === 'r' ? 'red' : 'black';
+                ctx.fill();
+            }
+        }
+    }
 }
 
-document.addEventListener('keydown', event => {
-    switch (event.key) {
-        case 'ArrowUp':
-            if (direction.y === 0) direction = { x: 0, y: -1 };
-            break;
-        case 'ArrowDown':
-            if (direction.y === 0) direction = { x: 0, y: 1 };
-            break;
-        case 'ArrowLeft':
-            if (direction.x === 0) direction = { x: -1, y: 0 };
-            break;
-        case 'ArrowRight':
-            if (direction.x === 0) direction = { x: 1, y: 0 };
-            break;
+// Lida com cliques do mouse
+canvas.addEventListener('click', (event) => {
+    const x = event.offsetX;
+    const y = event.offsetY;
+    const col = Math.floor(x / gridSize);
+    const row = Math.floor(y / gridSize);
+
+    if (currentPlayer === 'player') {
+        if (selectedPiece) {
+            // Movimento da peça selecionada
+            const validMove = makeMove(selectedPiece.row, selectedPiece.col, row, col);
+            if (validMove) {
+                currentPlayer = 'computer';
+                setTimeout(computerMove, 500);
+            }
+            selectedPiece = null;
+        } else {
+            // Seleção de peça
+            if (board[row][col] === 'r') {
+                selectedPiece = { row, col };
+            }
+        }
     }
 });
 
-document.getElementById('upButton').addEventListener('click', () => {
-    if (direction.y === 0) direction = { x: 0, y: -1 };
-});
-document.getElementById('downButton').addEventListener('click', () => {
-    if (direction.y === 0) direction = { x: 0, y: 1 };
-});
-document.getElementById('leftButton').addEventListener('click', () => {
-    if (direction.x === 0) direction = { x: -1, y: 0 };
-});
-document.getElementById('rightButton').addEventListener('click', () => {
-    if (direction.x === 0) direction = { x: 1, y: 0 };
-});
+// Realiza um movimento
+function makeMove(fromRow, fromCol, toRow, toCol) {
+    const piece = board[fromRow][fromCol];
+    const isValidMove = validateMove(fromRow, fromCol, toRow, toCol);
 
-document.getElementById('redirectButton').addEventListener('click', () => {
-    window.location.href = 'index.html';
-});
+    if (isValidMove) {
+        board[toRow][toCol] = piece;
+        board[fromRow][fromCol] = null;
+        drawBoard();
+        return true;
+    }
+    return false;
+}
 
-startGame();
+// Valida um movimento
+function validateMove(fromRow, fromCol, toRow, toCol) {
+    const piece = board[fromRow][fromCol];
+    if (board[toRow][toCol] !== null) return false;
+    const rowDiff = toRow - fromRow;
+    const colDiff = toCol - fromCol;
+
+    if (Math.abs(rowDiff) === 1 && Math.abs(colDiff) === 1) {
+        return true;
+    } else if (Math.abs(rowDiff) === 2 && Math.abs(colDiff) === 2) {
+        const jumpedRow = fromRow + rowDiff / 2;
+        const jumpedCol = fromCol + colDiff / 2;
+        const jumpedPiece = board[jumpedRow][jumpedCol];
+        if (jumpedPiece && jumpedPiece !== piece) {
+            board[jumpedRow][jumpedCol] = null;
+            return true;
+        }
+    }
+    return false;
+}
+
+// Movimento do computador
+function computerMove() {
+    const moves = getAllValidMoves('b');
+    if (moves.length > 0) {
+        const move = moves[Math.floor(Math.random() * moves.length)];
+        makeMove(move.fromRow, move.fromCol, move.toRow, move.toCol);
+    }
+    currentPlayer = 'player';
+}
+
+// Obtém todos os movimentos válidos
+function getAllValidMoves(player) {
+    const moves = [];
+    for (let row = 0; row < boardSize; row++) {
+        for (let col = 0; col < boardSize; col++) {
+            if (board[row][col] === player) {
+                const directions = [[-1, -1], [-1, 1], [1, -1], [1, 1]];
+                for (let [rowDiff, colDiff] of directions) {
+                    const newRow = row + rowDiff;
+                    const newCol = col + colDiff;
+                    if (validateMove(row, col, newRow, newCol)) {
+                        moves.push({ fromRow: row, fromCol: col, toRow: newRow, toCol: newCol });
+                    }
+                }
+            }
+        }
+    }
+    return moves;
+}
+
+// Inicializa e desenha o tabuleiro
+initializeBoard();
+drawBoard();
