@@ -132,5 +132,16 @@ function getAllValidMoves(player) {
     return moves;
 }
 
+document.getElementById('restartButton').addEventListener('click', () => {
+    initializeBoard();
+    drawBoard();
+    currentPlayer = 'player';
+    selectedPiece = null;
+});
+
+document.getElementById('redirectButton').addEventListener('click', () => {
+    window.location.href = 'index.html';
+});
+
 initializeBoard();
 drawBoard();
