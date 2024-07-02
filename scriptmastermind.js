@@ -147,7 +147,7 @@ document.getElementById('restartButton').addEventListener('click', () => {
 });
 
 document.getElementById('redirectButton').addEventListener('click', () => {
-    window.location.href = 'outra-pagina.html';
+    window.location.href = 'jogos.html';
 });
 
 initializeBoard();
