@@ -6,15 +6,14 @@ let board = [];
 let currentPlayer = 'player';
 let selectedPiece = null;
 
-// Inicializa o tabuleiro com peças
 function initializeBoard() {
     for (let row = 0; row < boardSize; row++) {
         board[row] = [];
         for (let col = 0; col < boardSize; col++) {
             if (row < 3 && (row + col) % 2 === 1) {
-                board[row][col] = 'b';  // Peça do computador
+                board[row][col] = 'b';
             } else if (row > 4 && (row + col) % 2 === 1) {
-                board[row][col] = 'r';  // Peça do jogador
+                board[row][col] = 'r';
             } else {
                 board[row][col] = null;
             }
@@ -22,7 +21,6 @@ function initializeBoard() {
     }
 }
 
-// Desenha o tabuleiro
 function drawBoard() {
     for (let row = 0; row < boardSize; row++) {
         for (let col = 0; col < boardSize; col++) {
@@ -44,7 +42,6 @@ function drawBoard() {
     }
 }
 
-// Lida com cliques do mouse
 canvas.addEventListener('click', (event) => {
     const x = event.offsetX;
     const y = event.offsetY;
@@ -53,7 +50,6 @@ canvas.addEventListener('click', (event) => {
 
     if (currentPlayer === 'player') {
         if (selectedPiece) {
-            // Movimento da peça selecionada
             const validMove = makeMove(selectedPiece.row, selectedPiece.col, row, col);
             if (validMove) {
                 currentPlayer = 'computer';
@@ -61,7 +57,6 @@ canvas.addEventListener('click', (event) => {
             }
             selectedPiece = null;
         } else {
-            // Seleção de peça
             if (board[row][col] === 'r') {
                 selectedPiece = { row, col };
             }
@@ -69,7 +64,6 @@ canvas.addEventListener('click', (event) => {
     }
 });
 
-// Realiza um movimento
 function makeMove(fromRow, fromCol, toRow, toCol) {
     const piece = board[fromRow][fromCol];
     const isValidMove = validateMove(fromRow, fromCol, toRow, toCol);
@@ -83,7 +77,6 @@ function makeMove(fromRow, fromCol, toRow, toCol) {
     return false;
 }
 
-// Valida um movimento
 function validateMove(fromRow, fromCol, toRow, toCol) {
     const piece = board[fromRow][fromCol];
     if (board[toRow][toCol] !== null) return false;
@@ -104,7 +97,6 @@ function validateMove(fromRow, fromCol, toRow, toCol) {
     return false;
 }
 
-// Movimento do computador
 function computerMove() {
     const moves = getAllValidMoves('b');
     if (moves.length > 0) {
@@ -114,7 +106,6 @@ function computerMove() {
     currentPlayer = 'player';
 }
 
-// Obtém todos os movimentos válidos
 function getAllValidMoves(player) {
     const moves = [];
     for (let row = 0; row < boardSize; row++) {
@@ -134,6 +125,5 @@ function getAllValidMoves(player) {
     return moves;
 }
 
-// Inicializa e desenha o tabuleiro
 initializeBoard();
 drawBoard();
