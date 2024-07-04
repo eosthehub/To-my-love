@@ -20,7 +20,7 @@ function sendMessage() {
 
 function checkPassword() {
     const password = document.getElementById('password').value;
-    const correctPassword = '09032024';
+    const correctPassword = '08082006';
     const errorMessage = document.getElementById('error-message');
 
     if (password === correctPassword) {
