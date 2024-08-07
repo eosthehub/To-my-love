@@ -1,0 +1,144 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #333;
+}
+
+.tv {
+    width: 800px;
+    height: 600px;
+    background-color: #000;
+    border: 20px solid #555;
+    position: relative;
+}
+
+.screen {
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    overflow: hidden;
+    position: relative;
+}
+
+.animation {
+    width: 100%;
+    height: 100%;
+    display: none; /* Inicialmente escondido */
+}
+
+.scene {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none; /* Inicialmente escondido */
+}
+
+.character {
+    position: absolute;
+    width: 50px;
+    height: 100px;
+    background-color: white;
+    opacity: 0;
+}
+
+#woman1 {
+    top: 50%;
+    left: 10%;
+    animation: woman1Animation 60s linear infinite;
+}
+
+#woman2 {
+    top: 50%;
+    left: 80%;
+    animation: woman2Animation 60s linear infinite;
+}
+
+#woman1_meet {
+    top: 50%;
+    left: 40%;
+    animation: woman1MeetAnimation 60s linear infinite;
+}
+
+#woman2_meet {
+    top: 50%;
+    left: 50%;
+    animation: woman2MeetAnimation 60s linear infinite;
+}
+
+#child1, #child2, #child3 {
+    top: 60%;
+    width: 30px;
+    height: 60px;
+    animation: childrenAnimation 60s linear infinite;
+}
+
+#old_woman1 {
+    top: 50%;
+    left: 30%;
+    animation: oldWoman1Animation 60s linear infinite;
+}
+
+#old_woman2 {
+    top: 50%;
+    left: 40%;
+    animation: oldWoman2Animation 60s linear infinite;
+}
+
+@keyframes woman1Animation {
+    0%, 5% { opacity: 1; transform: translateY(-50%) translateX(0); }
+    10%, 20% { transform: translateY(-50%) translateX(30%); }
+    25%, 30% { transform: translateY(-50%) translateX(40%); }
+    100% { transform: translateY(-50%) translateX(0); opacity: 0; }
+}
+
+@keyframes woman2Animation {
+    0%, 5% { opacity: 1; transform: translateY(-50%) translateX(0); }
+    10%, 20% { transform: translateY(-50%) translateX(-30%); }
+    25%, 30% { transform: translateY(-50%) translateX(-40%); }
+    100% { transform: translateY(-50%) translateX(0); opacity: 0; }
+}
+
+@keyframes woman1MeetAnimation {
+    35%, 40% { opacity: 1; transform: translateY(-50%) translateX(0); }
+    45%, 50% { transform: translateY(-50%) translateX(50%); }
+    100% { transform: translateY(-50%) translateX(0); opacity: 0; }
+}
+
+@keyframes woman2MeetAnimation {
+    35%, 40% { opacity: 1; transform: translateY(-50%) translateX(0); }
+    45%, 50% { transform: translateY(-50%) translateX(-50%); }
+    100% { transform: translateY(-50%) translateX(0); opacity: 0; }
+}
+
+@keyframes childrenAnimation {
+    55%, 60% { opacity: 1; transform: translateY(-50%) translateX(0); }
+    65%, 70% { transform: translateY(-50%) translateX(50%); }
+    100% { transform: translateY(-50%) translateX(0); opacity: 0; }
+}
+
+@keyframes oldWoman1Animation {
+    75%, 80% { opacity: 1; transform: translateY(-50%) translateX(0); }
+    85%, 90% { transform: translateY(-50%) translateX(50%); }
+    100% { transform: translateY(-50%) translateX(0); opacity: 0; }
+}
+
+@keyframes oldWoman2Animation {
+    75%, 80% { opacity: 1; transform: translateY(-50%) translateX(0); }
+    85%, 90% { transform: translateY(-50%) translateX(-50%); }
+    100% { transform: translateY(-50%) translateX(0); opacity: 0; }
+}
+
+#powerButton {
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    background-color: #555;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
