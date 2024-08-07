@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animação na Televisão</title>
+    <link rel="stylesheet" href="animacao.css">
+</head>
+<body>
+    <div class="tv">
+        <div class="screen">
+            <div class="animation" id="animation">
+                <!-- Scene 1: Two women in their houses -->
+                <div class="scene" id="scene1">
+                    <div class="character woman" id="woman1"></div>
+                    <div class="character woman" id="woman2"></div>
+                </div>
+                <!-- Scene 2: Meeting and hugging -->
+                <div class="scene" id="scene2">
+                    <div class="character woman" id="woman1_meet"></div>
+                    <div class="character woman" id="woman2_meet"></div>
+                </div>
+                <!-- Scene 3: With children -->
+                <div class="scene" id="scene3">
+                    <div class="character woman" id="woman1_family"></div>
+                    <div class="character woman" id="woman2_family"></div>
+                    <div class="character child" id="child1"></div>
+                    <div class="character child" id="child2"></div>
+                    <div class="character child" id="child3"></div>
+                </div>
+                <!-- Scene 4: Growing old -->
+                <div class="scene" id="scene4">
+                    <div class="character old_woman" id="old_woman1"></div>
+                    <div class="character old_woman" id="old_woman2"></div>
+                </div>
+            </div>
+        </div>
+        <button id="powerButton">Ligar</button>
+    </div>
+
+    <script src="animacao.js"></script>
+</body>
+</html>
