@@ -109,7 +109,7 @@ li:hover .perfil__texto {
 }
 
 .container__background {
-    background-image: url(img/Background-principal.png);
+    background-image: url(images/Background-principal.png);
     background-repeat: repeat-x;
     padding-bottom: 15%;
 }
