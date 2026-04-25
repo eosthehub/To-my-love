@@ -1,0 +1,89 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #0f172a;
+    color: #fff;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Container principal */
+.container {
+    text-align: center;
+    max-width: 600px;
+    padding: 20px;
+}
+
+/* Mensagem */
+.message {
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+/* Botão coração */
+.container button {
+    font-size: 24px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background: #3b82f6;
+    color: white;
+    transition: 0.3s;
+}
+
+.container button:hover {
+    background: #2563eb;
+}
+
+/* Menu */
+.menu {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+}
+
+/* Botão do menu */
+.menu-button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    background: #3b82f6;
+    color: white;
+    cursor: pointer;
+}
+
+/* Conteúdo do menu */
+.menu-content {
+    display: none;
+    flex-direction: column;
+    margin-top: 10px;
+    background: #1e293b;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* Botões dentro do menu */
+.menu-content button {
+    background: transparent;
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: left;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.menu-content button:hover {
+    background: #334155;
+  }
