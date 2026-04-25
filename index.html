@@ -8,20 +8,17 @@
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="logo">💙</div>
+    <div class="menu">
+    <button class="menu-button" onclick="toggleMenu()">💙</button>
 
-        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-
-        <ul class="nav-links" id="navLinks">
-            <li><a href="index.html">Início</a></li>
-            <li><a href="jogos.html">Jogos</a></li>
-            <li><a href="Central.html">Biblioteca</a></li>
-            <li><a href="atualizacao.html">Atualização</a></li>
-            <li><a href="amor.html">💙</a></li>
-            <li><a href="https://open.spotify.com/playlist/1bN2og7ffd4otRABJQakPx" target="_blank">Spotify</a></li>
-        </ul>
-    </nav>
+    <div class="menu-content" id="menuContent">
+        <button onclick="location.href='jogos.html'">Jogos</button>
+        <button onclick="location.href='central.html'">Biblioteca</button>
+        <button onclick="location.href='atualizacao.html'">Atualização</button>
+        <button onclick="location.href='amor.html'">💙</button>
+        <button onclick="window.open('https://open.spotify.com/playlist/1bN2og7ffd4otRABJQakPx')">Spotify</button>
+    </div>
+</div>
 
     <div class="container">
         <div class="message">
@@ -32,12 +29,5 @@
             <p>Tá bem simples, mas com o tempo vai ficando melhor.</p>
         </div>
     </div>
-
-    <script>
-        function toggleMenu() {
-            document.getElementById("navLinks").classList.toggle("active");
-        }
-    </script>
-
 </body>
 </html>
