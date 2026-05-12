@@ -16,47 +16,47 @@ const locations = [
     {
         name: "Alagoas 💙",
         coords: [-9.71, -35.73],
-        image: "https://placehold.co/600x400?text=Alagoas"
+        image: "images/Alagoas.png"
     },
     {
         name: "Amapá 💙",
         coords: [1.41, -51.77],
-        image: "https://placehold.co/600x400?text=Amapa"
+        image: "images/Amapá.png"
     },
     {
         name: "Amazonas 💙",
         coords: [-3.47, -65.10],
-        image: "https://placehold.co/600x400?text=Amazonas"
+        image: "images/Amazonas.png"
     },
     {
         name: "Bahia 💙",
         coords: [-12.96, -38.51],
-        image: "https://placehold.co/600x400?text=Bahia"
+        image: "images/Bahia.png"
     },
     {
         name: "Ceará 💙",
         coords: [-3.71, -38.54],
-        image: "https://placehold.co/600x400?text=Ceara"
+        image: "images/Ceará.png"
     },
     {
         name: "Distrito Federal 💙",
         coords: [-15.83, -47.86],
-        image: "https://placehold.co/600x400?text=Distrito+Federal"
+        image: "images/Brasília.png"
     },
     {
         name: "Espírito Santo 💙",
         coords: [-19.19, -40.34],
-        image: "https://placehold.co/600x400?text=Espirito+Santo"
+        image: "images/Espírito santo.png"
     },
     {
         name: "Goiás 💙",
         coords: [-16.64, -49.31],
-        image: "https://placehold.co/600x400?text=Goias"
+        image: "images/Goiás.png"
     },
     {
         name: "Maranhão 💙",
         coords: [-2.55, -44.30],
-        image: "https://placehold.co/600x400?text=Maranhao"
+        image: "images/Maranhão.png"
     },
     {
         name: "Mato Grosso 💙",
@@ -126,22 +126,22 @@ const locations = [
     {
         name: "Santa Catarina 💙",
         coords: [-27.33, -49.44],
-        image: "https://placehold.co/600x400?text=Santa+Catarina"
+        image: "images/Santa catarina.png"
     },
     {
         name: "São Paulo 💙",
         coords: [-23.55, -46.64],
-        image: "https://placehold.co/600x400?text=Sao+Paulo"
+        image: "images/São paulo.png"
     },
     {
         name: "Sergipe 💙",
         coords: [-10.57, -37.45],
-        image: "https://placehold.co/600x400?text=Sergipe"
+        image: "images/Sergipe.png"
     },
     {
         name: "Tocantins 💙",
         coords: [-10.25, -48.25],
-        image: "https://placehold.co/600x400?text=Tocantins"
+        image: "images/Tocantins.png"
     }
 ];
 
